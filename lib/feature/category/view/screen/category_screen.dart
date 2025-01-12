@@ -23,19 +23,22 @@ class CategoryScreen extends StatelessWidget {
         body: BlocBuilder<CategoryCubit, CategoryState>(
           builder: (context, state) {
             if (state is CategorySuccess) {
-              return ListView.builder(
-                itemCount: state.category.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) {
-                        return ProductDetails(
-                            categoryModel: state.category[index]);
-                      }));
-                    },
-                  );
-                },
+              return SizedBox(
+                height: 200,
+                child: ListView.builder(
+                  itemCount: state.category.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
+                          return ProductDetails(
+                              categoryModel: state.category[index]);
+                        }));
+                      },
+                    );
+                  },
+                ),
               );
             } else if (state is CategoryLoading) {
               return const Center(

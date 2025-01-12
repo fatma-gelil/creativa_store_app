@@ -5,5 +5,6 @@ import 'package:store/my_app.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
+ // AuthData.postData();
   runApp(const MyApp());
 }

@@ -9,8 +9,8 @@ class CategoryCardBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(16.0),
+    return Card(
+        child: Column(
       children: [
         Image.network(
           'https://www.ntiegypt.sci.eg/moodle/pluginfile.php/1/core_admin/logocompact/300x300/1725271317/NTI%20Logo.png',
@@ -35,6 +35,7 @@ class CategoryCardBuilder extends StatelessWidget {
           );
         }),
       ],
-    );
+    ));
+    //
   }
 }
