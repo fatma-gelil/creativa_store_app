@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store/feature/category/cubit/cubit/category_cubit.dart';
 import 'package:store/feature/category/cubit/cubit/category_state.dart';
 import 'package:store/feature/category/model/category_data.dart';
-import 'package:store/feature/category/view/screen/product_details.dart';
 import 'package:store/feature/category/view/widget/app_bar.dart';
+import 'package:store/feature/category/view/widget/gridview.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen(
@@ -23,22 +23,9 @@ class CategoryScreen extends StatelessWidget {
         body: BlocBuilder<CategoryCubit, CategoryState>(
           builder: (context, state) {
             if (state is CategorySuccess) {
-              return SizedBox(
-                height: 200,
-                child: ListView.builder(
-                  itemCount: state.category.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) {
-                          return ProductDetails(
-                              categoryModel: state.category[index]);
-                        }));
-                      },
-                    );
-                  },
-                ),
+              return Expanded(
+              child: MyGridView(state: 
+              state),
               );
             } else if (state is CategoryLoading) {
               return const Center(

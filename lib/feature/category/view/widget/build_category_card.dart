@@ -36,6 +36,6 @@ class CategoryCardBuilder extends StatelessWidget {
         }),
       ],
     ));
-    //
+    
   }
 }

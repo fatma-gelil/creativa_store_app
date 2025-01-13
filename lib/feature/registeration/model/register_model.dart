@@ -23,10 +23,24 @@ class AuthData {
       "token": token,
       "profileImage": profileImage
     });
-    var data = response.data;
-    print(data);
-    print("=============================================");
-    print(response.statusCode);
-    print("=============================================");
+    try {
+      var data = response.data;
+      // ignore: avoid_print
+      print(response.statusCode);
+      // ignore: avoid_print
+      print("=======================================");
+      // ignore: avoid_print
+      print(data['message']);
+      // ignore: avoid_print
+      print("=======================================");
+      return data;
+    } on DioException catch (error) {
+      if (error.response != null) {
+        // ignore: avoid_print
+        print(error.response!.data['message']);
+          return error.response!.data;
+        
+      }
+    }
   }
 }

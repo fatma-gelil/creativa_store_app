@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:store/feature/category/model/category_card_model.dart';
 import 'package:store/feature/category/view/screen/category_screen.dart';
 
+
 List<CategoryCardModel> categoryList(BuildContext context) {
   return [
     CategoryCardModel(
