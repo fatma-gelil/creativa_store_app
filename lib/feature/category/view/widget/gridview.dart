@@ -29,19 +29,19 @@ class MyGridView extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.0),
               border: Border.all(
                   color: Colors
-                      .grey.shade300), // Border color similar to card outline
+                      .grey.shade300), 
               color: Colors.white,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AspectRatio(
-                  aspectRatio: 1, // Square image
+                  aspectRatio: 1, 
                   child: ClipRRect(
                     borderRadius:
                         const BorderRadius.vertical(top: Radius.circular(12.0)),
                     child: Image.network(
-                      category.image, // Use your image source
+                      category.image, 
                       fit: BoxFit.fill,
                     ),
                   ),

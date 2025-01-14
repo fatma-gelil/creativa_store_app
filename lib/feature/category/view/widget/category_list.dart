@@ -44,7 +44,7 @@ List<CategoryCardModel> categoryList(BuildContext context) {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => const CategoryScreen(
-              endPoint: "men's%20clothing ",
+              endPoint: "men's%20clothing",
               title: 'Men Clothes',
             ),
           ),

@@ -19,13 +19,11 @@ class CategoryScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: categoryAppBar(title: title),
-        //drawer:categoryList(context),
         body: BlocBuilder<CategoryCubit, CategoryState>(
           builder: (context, state) {
             if (state is CategorySuccess) {
               return Expanded(
-              child: MyGridView(state: 
-              state),
+                child: MyGridView(state: state),
               );
             } else if (state is CategoryLoading) {
               return const Center(

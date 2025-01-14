@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store/core/widget/validator.dart';
+import 'package:store/feature/category/view/screen/home_screen.dart';
 import 'package:store/feature/registeration/cubit/cubit/register_cubit.dart';
 import 'package:store/feature/registeration/cubit/cubit/register_state.dart';
 import 'package:store/feature/registeration/model/register_model.dart';
@@ -33,13 +34,18 @@ class RegisterScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => RegisterCubit(),
       child: Scaffold(
-        body: BlocConsumer<RegisterCubit, RegisterState>(
+        body: BlocConsumer<RegisterCubit, AuthState>(
           listener: (context, state) {
             if (state is RegisterSuccess) {
               if (state.userData["status"] == "success") {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     backgroundColor: Colors.indigoAccent,
                     content: Text(state.userData["message"])));
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => const HomeScreen(),
+                  ),
+                );
               }
               if (state.userData["status"] == "error") {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -49,7 +55,6 @@ class RegisterScreen extends StatelessWidget {
             }
           },
           builder: (context, state) {
-           // RegisterCubit registerCubit = RegisterCubit();
             return Form(
               key: registered,
               child: Column(
@@ -72,11 +77,11 @@ class RegisterScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: FileImage(context.read<RegisterCubit>().image!),
+                              image: FileImage(
+                                  context.read<RegisterCubit>().image!),
                               fit: BoxFit.fill,
                             ),
                           )),
-                  // :FileImage(registerCubit.image)
                   CustomTextField(
                     controller: nameController,
                     label: const Text("Name"),
@@ -129,17 +134,9 @@ class RegisterScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  GenderSelection(genderController: genderController,),
-                  // CustomTextField(
-                  //   controller: genderController,
-                  //   label: const Text("Gender"),
-                  //   hintText: 'enter your gender',
-                  //   prefixIcon: const Icon(Icons.person_add_alt_1),
-                  //   validator: (value) {
-                  //     return MyValidators.genderValidator(value: value);
-                  //   },
-                  //   suffixIcon: const Icon(Icons.clear),
-                  // ),
+                  GenderSelection(
+                    genderController: genderController,
+                  ),
                   const SizedBox(
                     height: 10,
                   ),
@@ -166,20 +163,11 @@ class RegisterScreen extends StatelessWidget {
                     },
                     suffixIcon: const Icon(Icons.clear),
                   ),
-                  // const SizedBox(
-                  //   height: 10,
-                  // ),
-                  // CustomTextField(
-                  //   controller: profileImageController,
-                  //   label: const Text("Profile"),
-                  //   hintText: 'enter your photo',
-                  //   prefixIcon: const Icon(Icons.photo),
-                  //   validator: (value) {
-                  //     return MyValidators.imageValidator(value);
-                  //   },
-                  //   suffixIcon: const Icon(Icons.clear),
-                  // ),
+                   const SizedBox(
+                    height: 40,
+                  ),
                   ElevatedButton(
+                    style:ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),) ,
                       onPressed: () {
                         if (registered.currentState!.validate()) {
                           context.read<RegisterCubit>().postDataCubit(
@@ -190,11 +178,10 @@ class RegisterScreen extends StatelessWidget {
                                 genderData: genderController.text,
                                 passwordData: passwordController.text,
                                 tokenData: tokenController.text,
-                                //profileImageData: profileImageController.text
                               );
                         }
                       },
-                      child: const Text('Submit'))
+                      child: const Text('Submit',style: TextStyle(color: Colors.black),))
                 ],
               ),
             );

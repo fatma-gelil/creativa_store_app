@@ -1,15 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:store/feature/registeration/cubit/cubit/register_state.dart';
 import 'package:store/feature/registeration/model/register_model.dart';
-import 'package:image_picker/image_picker.dart';
 
-class RegisterCubit extends Cubit<RegisterState> {
+class RegisterCubit extends Cubit<AuthState> {
   RegisterCubit() : super(RegisterInitial());
   final AuthData authData = AuthData();
+
+  // Register function
   postDataCubit({
     required nameData,
     required emailData,
@@ -18,7 +20,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     required genderData,
     required passwordData,
     required tokenData,
-    //required profileImageData
   }) async {
     var user = await authData.postData(
         name: nameData,
@@ -28,8 +29,19 @@ class RegisterCubit extends Cubit<RegisterState> {
         gender: genderData,
         password: passwordData,
         token: tokenData,
-        profileImage:userImage);
+        profileImage: userImage);
     emit(RegisterSuccess(userData: user));
+  }
+
+  // Login function
+  loginCubit({required String nameData, required String passwordData}) async {
+    try {
+      emit(LoginLoad()); // Emits loading state
+      var user = await authData.login(name: nameData, password: passwordData);
+      emit(LoginSuccess(userData: user)); // Emits success state
+    } catch (e) {
+      emit(LoginFail(errorMessage: e.toString())); // Emits failure state
+    }
   }
 
   ImagePicker picker = ImagePicker();

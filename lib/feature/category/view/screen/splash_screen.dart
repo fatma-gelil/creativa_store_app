@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:store/feature/category/view/screen/home_screen.dart';
+import 'package:store/feature/registeration/screen/register_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,9 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
       () => {
         if (mounted)
           {
-            Navigator.of(context).push(
+            Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => const HomeScreen(),
+                builder: (context) =>  HomeScreen(),
               ),
             )
           }
@@ -41,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
           const SpinKitChasingDots(
             color: Colors.white,
             size: 200.0,
-            duration: Duration(seconds: 6),
+            duration: Duration(seconds: 4),
           )
         ],
       ),
