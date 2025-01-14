@@ -167,7 +167,7 @@ class RegisterScreen extends StatelessWidget {
                     height: 40,
                   ),
                   ElevatedButton(
-                    style:ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),) ,
+                    style:ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Colors.blue),) ,
                       onPressed: () {
                         if (registered.currentState!.validate()) {
                           context.read<RegisterCubit>().postDataCubit(

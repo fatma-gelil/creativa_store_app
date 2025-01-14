@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:store/feature/category/view/screen/home_screen.dart';
 import 'package:store/feature/registeration/screen/register_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,13 +13,13 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(
-      const Duration(seconds: 5),
+      const Duration(seconds: 7),
       () => {
         if (mounted)
           {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) =>  HomeScreen(),
+                builder: (context) =>  RegisterScreen(),
               ),
             )
           }
