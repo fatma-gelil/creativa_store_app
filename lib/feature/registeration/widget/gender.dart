@@ -19,13 +19,12 @@ class _GenderSelectionState extends State<GenderSelection> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(8.0),
       child: DropdownButtonFormField<String>(
-        decoration: const InputDecoration(
-          labelText: 'Gender',
-          border: OutlineInputBorder(),
-          
-        ),
+        decoration: InputDecoration(
+            border: border(color: Colors.teal, radius: 30),
+            enabledBorder: border(color: Colors.black, radius: 50),
+            focusedBorder: border(color: Colors.grey, radius: 10)),
         value: selectedGender,
         hint: const Text('Select Gender'),
         isExpanded: true,
@@ -38,7 +37,7 @@ class _GenderSelectionState extends State<GenderSelection> {
         onChanged: (String? newValue) {
           setState(() {
             selectedGender = newValue;
-          
+
             widget.genderController.text = newValue ?? '';
           });
         },
@@ -50,4 +49,12 @@ class _GenderSelectionState extends State<GenderSelection> {
         },
       ),
     );
-  }}
+  }
+}
+
+InputBorder border({required Color color, required double radius}) {
+  return OutlineInputBorder(
+    borderRadius: BorderRadius.circular(radius),
+    borderSide: BorderSide(color: color),
+  );
+}
