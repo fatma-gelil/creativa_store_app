@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store/feature/category/view/screen/product_details.dart';
 
 class MyGridView extends StatelessWidget {
-  final state;
+  final dynamic state;
   const MyGridView({super.key, required this.state});
 
   @override
