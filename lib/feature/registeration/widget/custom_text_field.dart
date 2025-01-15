@@ -8,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final Widget prefixIcon;
   final Widget suffixIcon;
+  final Widget? suffix;
 
   const CustomTextField({
     super.key,
@@ -18,6 +19,7 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     required this.prefixIcon,
     required this.suffixIcon,
+    this.suffix,
   });
 
   @override

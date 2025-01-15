@@ -7,14 +7,20 @@ import 'package:store/feature/registeration/cubit/cubit/register_state.dart';
 import 'package:store/feature/registeration/screen/register_screen.dart';
 import 'package:store/feature/registeration/widget/custom_text_field.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
 
   final loginFormKey = GlobalKey<FormState>();
-
+  bool visible = true;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -59,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                     height: 80,
                   ),
                   CustomTextField(
-                    controller:emailController ,
+                    controller: emailController,
                     label: const Text("Email"),
                     hintText: 'Enter your email',
                     prefixIcon: const Icon(Icons.person),
@@ -72,6 +78,17 @@ class LoginScreen extends StatelessWidget {
                     height: 10,
                   ),
                   CustomTextField(
+                    obscureText: visible,
+                    suffix: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          visible = !visible;
+                        });
+                      },
+                      icon: Icon(
+                        visible ? Icons.visibility_off : Icons.remove_red_eye,
+                      ),
+                    ),
                     controller: passwordController,
                     label: const Text("Password"),
                     hintText: 'Enter your password',
@@ -85,7 +102,10 @@ class LoginScreen extends StatelessWidget {
                     height: 20,
                   ),
                   ElevatedButton(
-                    style:ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Colors.blue),) ,
+                    style: ButtonStyle(
+                      backgroundColor:
+                          WidgetStateProperty.all<Color>(Colors.blue),
+                    ),
                     onPressed: () {
                       if (loginFormKey.currentState!.validate()) {
                         context.read<RegisterCubit>().loginCubit(
@@ -94,7 +114,10 @@ class LoginScreen extends StatelessWidget {
                             );
                       }
                     },
-                    child: const Text('Login',style: TextStyle(color: Colors.black),),
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                   TextButton(
                       onPressed: () {
@@ -104,7 +127,10 @@ class LoginScreen extends StatelessWidget {
                           ),
                         );
                       },
-                      child: Text("you don't have an account? sign up",style: TextStyle(color: Colors.blue),)),
+                      child: Text(
+                        "you don't have an account? sign up",
+                        style: TextStyle(color: Colors.blue),
+                      )),
                   if (state is LoginLoad) const CircularProgressIndicator(),
                 ],
               ),

@@ -9,9 +9,14 @@ import 'package:store/feature/registeration/screen/login_screen.dart';
 import 'package:store/feature/registeration/widget/custom_text_field.dart';
 import 'package:store/feature/registeration/widget/gender.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   RegisterScreen({super.key});
 
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   final AuthData data = AuthData();
 
   final TextEditingController nameController = TextEditingController();
@@ -29,7 +34,11 @@ class RegisterScreen extends StatelessWidget {
   final TextEditingController tokenController = TextEditingController();
 
   final TextEditingController profileImageController = TextEditingController();
+
   final registered = GlobalKey<FormState>();
+
+  bool visible = true;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -61,7 +70,7 @@ class RegisterScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 80,
+                    height: 60,
                   ),
                   context.read<RegisterCubit>().image == null
                       ? MaterialButton(
@@ -94,7 +103,7 @@ class RegisterScreen extends StatelessWidget {
                     suffixIcon: const Icon(Icons.clear),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   CustomTextField(
                     controller: emailController,
@@ -107,7 +116,7 @@ class RegisterScreen extends StatelessWidget {
                     suffixIcon: const Icon(Icons.clear),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   CustomTextField(
                     controller: phoneController,
@@ -120,7 +129,7 @@ class RegisterScreen extends StatelessWidget {
                     suffixIcon: const Icon(Icons.clear),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   CustomTextField(
                     controller: nationalIdController,
@@ -133,15 +142,26 @@ class RegisterScreen extends StatelessWidget {
                     suffixIcon: const Icon(Icons.clear),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   GenderSelection(
                     genderController: genderController,
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   CustomTextField(
+                    obscureText: visible,
+                    suffix: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          visible = !visible;
+                        });
+                      },
+                      icon: Icon(
+                        visible ? Icons.visibility_off : Icons.remove_red_eye,
+                      ),
+                    ),
                     controller: passwordController,
                     label: const Text("Password"),
                     hintText: 'enter your password',
@@ -152,7 +172,7 @@ class RegisterScreen extends StatelessWidget {
                     suffixIcon: const Icon(Icons.clear),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   CustomTextField(
                     controller: tokenController,
@@ -164,11 +184,14 @@ class RegisterScreen extends StatelessWidget {
                     },
                     suffixIcon: const Icon(Icons.clear),
                   ),
-                   const SizedBox(
-                    height: 10,
+                  const SizedBox(
+                    height: 5,
                   ),
                   ElevatedButton(
-                    style:ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Colors.blue),) ,
+                      style: ButtonStyle(
+                        backgroundColor:
+                            WidgetStateProperty.all<Color>(Colors.blue),
+                      ),
                       onPressed: () {
                         if (registered.currentState!.validate()) {
                           context.read<RegisterCubit>().postDataCubit(
@@ -182,8 +205,11 @@ class RegisterScreen extends StatelessWidget {
                               );
                         }
                       },
-                      child: const Text('Sign up',style: TextStyle(color: Colors.black),)),
-                      TextButton(
+                      child: const Text(
+                        'Sign up',
+                        style: TextStyle(color: Colors.black),
+                      )),
+                  TextButton(
                       onPressed: () {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
@@ -191,7 +217,10 @@ class RegisterScreen extends StatelessWidget {
                           ),
                         );
                       },
-                      child: Text("already have an account? login",style: TextStyle(color: Colors.blue),)),
+                      child: Text(
+                        "already have an account? login",
+                        style: TextStyle(color: Colors.blue),
+                      )),
                 ],
               ),
             );
