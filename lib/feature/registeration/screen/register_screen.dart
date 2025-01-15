@@ -5,6 +5,7 @@ import 'package:store/feature/category/view/screen/home_screen.dart';
 import 'package:store/feature/registeration/cubit/cubit/register_cubit.dart';
 import 'package:store/feature/registeration/cubit/cubit/register_state.dart';
 import 'package:store/feature/registeration/model/register_model.dart';
+import 'package:store/feature/registeration/screen/login_screen.dart';
 import 'package:store/feature/registeration/widget/custom_text_field.dart';
 import 'package:store/feature/registeration/widget/gender.dart';
 
@@ -164,7 +165,7 @@ class RegisterScreen extends StatelessWidget {
                     suffixIcon: const Icon(Icons.clear),
                   ),
                    const SizedBox(
-                    height: 40,
+                    height: 10,
                   ),
                   ElevatedButton(
                     style:ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Colors.blue),) ,
@@ -181,7 +182,16 @@ class RegisterScreen extends StatelessWidget {
                               );
                         }
                       },
-                      child: const Text('Submit',style: TextStyle(color: Colors.black),))
+                      child: const Text('Sign up',style: TextStyle(color: Colors.black),)),
+                      TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ),
+                        );
+                      },
+                      child: Text("already have an account? login",style: TextStyle(color: Colors.blue),)),
                 ],
               ),
             );

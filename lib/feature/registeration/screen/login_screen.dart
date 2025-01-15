@@ -4,6 +4,7 @@ import 'package:store/core/widget/validator.dart';
 import 'package:store/feature/category/view/screen/home_screen.dart';
 import 'package:store/feature/registeration/cubit/cubit/register_cubit.dart';
 import 'package:store/feature/registeration/cubit/cubit/register_state.dart';
+import 'package:store/feature/registeration/screen/register_screen.dart';
 import 'package:store/feature/registeration/widget/custom_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -84,6 +85,7 @@ class LoginScreen extends StatelessWidget {
                     height: 20,
                   ),
                   ElevatedButton(
+                    style:ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Colors.blue),) ,
                     onPressed: () {
                       if (loginFormKey.currentState!.validate()) {
                         context.read<RegisterCubit>().loginCubit(
@@ -92,8 +94,17 @@ class LoginScreen extends StatelessWidget {
                             );
                       }
                     },
-                    child: const Text('Login'),
+                    child: const Text('Login',style: TextStyle(color: Colors.black),),
                   ),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => RegisterScreen(),
+                          ),
+                        );
+                      },
+                      child: Text("you don't have an account? sign up",style: TextStyle(color: Colors.blue),)),
                   if (state is LoginLoad) const CircularProgressIndicator(),
                 ],
               ),
