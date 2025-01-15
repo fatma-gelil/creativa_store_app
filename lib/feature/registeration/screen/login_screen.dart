@@ -10,7 +10,7 @@ import 'package:store/feature/registeration/widget/custom_text_field.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   final loginFormKey = GlobalKey<FormState>();
@@ -59,9 +59,9 @@ class LoginScreen extends StatelessWidget {
                     height: 80,
                   ),
                   CustomTextField(
-                    controller: nameController,
-                    label: const Text("Name"),
-                    hintText: 'Enter your name',
+                    controller:emailController ,
+                    label: const Text("Email"),
+                    hintText: 'Enter your email',
                     prefixIcon: const Icon(Icons.person),
                     validator: (value) {
                       return MyValidators.displayNameValidator(value);
@@ -89,7 +89,7 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () {
                       if (loginFormKey.currentState!.validate()) {
                         context.read<RegisterCubit>().loginCubit(
-                              nameData: nameController.text,
+                              nameData: emailController.text,
                               passwordData: passwordController.text,
                             );
                       }
