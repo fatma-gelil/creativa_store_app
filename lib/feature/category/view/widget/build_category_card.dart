@@ -13,11 +13,13 @@ class CategoryCardBuilder extends StatelessWidget {
         color: Colors.white,
         elevation: 0,
         child: Column(
+
           children: [
             Image.network(
               'https://www.ntiegypt.sci.eg/moodle/pluginfile.php/1/core_admin/logocompact/300x300/1725271317/NTI%20Logo.png',
               height: 200,
             ),
+            SizedBox(height: 30,),
             ...List.generate(categoryList(context).length, (index) {
               return Card(
                 color: Colors.blue,

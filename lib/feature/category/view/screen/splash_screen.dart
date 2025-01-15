@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
             height: 200,
           ),
           const SpinKitChasingDots(
-            color: Colors.white,
+            color: Colors.blue,
             size: 200.0,
             duration: Duration(seconds: 4),
           )

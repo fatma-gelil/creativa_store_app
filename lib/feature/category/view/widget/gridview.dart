@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store/feature/category/view/screen/product_details.dart';
+import 'package:store/feature/category/view/screen/product_details_screen.dart';
 
 class MyGridView extends StatelessWidget {
   final dynamic state;
@@ -58,6 +58,7 @@ class MyGridView extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                       ),
                       const SizedBox(height: 4),

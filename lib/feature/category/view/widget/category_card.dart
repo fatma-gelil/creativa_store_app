@@ -9,7 +9,7 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: item.onTap,
-      child: Text(item.title)
+      child: Text(item.title,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)
     );
   }
 }
