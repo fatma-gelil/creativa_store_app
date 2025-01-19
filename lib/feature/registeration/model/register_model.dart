@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:store/core/builder/cache_data.dart';
 
 class AuthData {
   final Dio dio = Dio();
@@ -10,7 +11,6 @@ class AuthData {
     required nationalId,
     required gender,
     required password,
-    required token,
     required profileImage,
   }) async {
     var response =
@@ -21,7 +21,6 @@ class AuthData {
       "nationalId": nationalId,
       "gender": gender,
       "password": password,
-      "token": token,
       "profileImage": profileImage
     });
     try {
@@ -46,12 +45,16 @@ class AuthData {
 
   // Login function
   login({required String name, required String password}) async {
-    var response = await dio.post('https://elwekala.onrender.com/user/login', data: {
+    var response =
+        await dio.post('https://elwekala.onrender.com/user/login', data: {
       "name": name,
       "password": password,
     });
     try {
       var data = response.data;
+      
+      var newToken = data['token'];
+      CacheShared.shared!.setString('token', newToken);
       // ignore: avoid_print
       print(response.statusCode);
       // ignore: avoid_print

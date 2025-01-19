@@ -10,7 +10,7 @@ import 'package:store/feature/registeration/widget/custom_text_field.dart';
 import 'package:store/feature/registeration/widget/gender.dart';
 
 class RegisterScreen extends StatefulWidget {
-  RegisterScreen({super.key});
+  const RegisterScreen({super.key});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -30,8 +30,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController genderController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
-
-  final TextEditingController tokenController = TextEditingController();
 
   final TextEditingController profileImageController = TextEditingController();
 
@@ -85,8 +83,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                            image: FileImage(
-                                context.read<RegisterCubit>().image!),
+                            image:
+                                FileImage(context.read<RegisterCubit>().image!),
                             fit: BoxFit.fill,
                           ),
                         )),
@@ -172,19 +170,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 const SizedBox(
                   height: 5,
                 ),
-                CustomTextField(
-                  controller: tokenController,
-                  label: const Text("Token"),
-                  hintText: 'enter your token',
-                  prefixIcon: const Icon(Icons.token),
-                  validator: (value) {
-                    return MyValidators.tokenValidator(value);
-                  },
-                  suffixIcon: const Icon(Icons.clear),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
                 ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:
@@ -199,7 +184,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               nationalIdData: nationalIdController.text,
                               genderData: genderController.text,
                               passwordData: passwordController.text,
-                              tokenData: tokenController.text,
                             );
                       }
                     },

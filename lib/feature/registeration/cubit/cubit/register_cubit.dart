@@ -19,7 +19,7 @@ class RegisterCubit extends Cubit<AuthState> {
     required nationalIdData,
     required genderData,
     required passwordData,
-    required tokenData,
+    
   }) async {
     var user = await authData.postData(
         name: nameData,
@@ -28,7 +28,6 @@ class RegisterCubit extends Cubit<AuthState> {
         nationalId: nationalIdData,
         gender: genderData,
         password: passwordData,
-        token: tokenData,
         profileImage: userImage);
     emit(RegisterSuccess(userData: user));
   }
@@ -36,11 +35,11 @@ class RegisterCubit extends Cubit<AuthState> {
   // Login function
   loginCubit({required String nameData, required String passwordData}) async {
     try {
-      emit(LoginLoad()); // Emits loading state
+      emit(LoginLoad());
       var user = await authData.login(name: nameData, password: passwordData);
-      emit(LoginSuccess(userData: user)); // Emits success state
+      emit(LoginSuccess(userData: user));
     } catch (e) {
-      emit(LoginFail(errorMessage: e.toString())); // Emits failure state
+      emit(LoginFail(errorMessage: e.toString()));
     }
   }
 
