@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:store/core/builder/cache_data.dart';
 import 'package:store/feature/profile/model/profile_model.dart';
-var getToken=CacheShared.shared!.getDouble("token");
+//var getToken=CacheShared.shared!.getDouble("token");
 class ProfileData {
   Dio dio = Dio();
   getData() async {
     var response = await dio.post('https://elwekala.onrender.com/user/profile',
-        data: {"token":getToken});
+        data: {"token":'tz9n358ykgm64xp85g'}
+       );
     try {
       var repoData = response.data;
       var user = UserProfile.fromjson(repoData);

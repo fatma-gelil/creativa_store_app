@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:store/core/builder/cache_data.dart';
 
 class AuthData {
   final Dio dio = Dio();
@@ -53,8 +52,8 @@ class AuthData {
     try {
       var data = response.data;
       
-      var newToken = data['token'];
-      CacheShared.shared!.setString('token', newToken);
+      //var newToken = data['user']['token'];
+      //CacheShared.shared!.setString('token', newToken);
       // ignore: avoid_print
       print(response.statusCode);
       // ignore: avoid_print
