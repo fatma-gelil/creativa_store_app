@@ -1,4 +1,5 @@
-import 'package:store/feature/get_laptop/model/laptop_model.dart';
+
+import 'package:store/feature/Laptop/model/laptop_model.dart';
 
 sealed class LaptopState {}
 

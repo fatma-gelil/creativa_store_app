@@ -4,7 +4,7 @@ class LaptopModel {
   final String id;
   final String category;
   final String state;
-  final String price;
+  final num price;
   LaptopModel(
       {required this.description,
       required this.image,
@@ -17,7 +17,7 @@ class LaptopModel {
     return LaptopModel(
         description: jsonData['description'],
         category: jsonData['category'],
-        state: jsonData['state'],
+        state: jsonData['status'],
         image: jsonData['image'],
         id: jsonData['_id'],
         price: jsonData['price']);

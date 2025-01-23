@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store/feature/category/view/screen/home_screen.dart';
+import 'package:store/feature/fav/view/fav_screen.dart';
 import 'package:store/feature/profile/view/profile_screen.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
@@ -27,6 +28,10 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
           MaterialPageRoute(builder: (context) => const ProfileScreen()),
         );
         break;
+        case 2:
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const FavScreen()),
+        );
     }
   }
 
@@ -43,6 +48,10 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: 'Profile',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.favorite),
+          label: 'favourite',
         ),
       ],
     );

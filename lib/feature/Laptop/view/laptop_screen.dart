@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store/feature/Laptop/cubit/lap_top_cubit.dart';
+import 'package:store/feature/Laptop/cubit/lap_top_state.dart';
 import 'package:store/feature/cart/cubit/cubit/cart_cubit.dart';
-import 'package:store/feature/get_laptop/cubit/cubit/laptop_cubit.dart';
-import 'package:store/feature/get_laptop/cubit/cubit/laptop_state.dart';
+import 'package:store/feature/fav/cubit/favourite_cubit.dart';
 
 class LaptopScreen extends StatelessWidget {
   const LaptopScreen({super.key});
@@ -13,7 +14,10 @@ class LaptopScreen extends StatelessWidget {
       create: (context) => LaptopCubit()..getLaptop(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Laptops",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+          title: const Text(
+            "Laptops",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
           centerTitle: true,
           backgroundColor: Colors.blue,
         ),
@@ -63,16 +67,29 @@ class LaptopScreen extends StatelessWidget {
                           ),
                           Row(
                             children: [
+                              SizedBox(
+                                width: 10,
+                              ),
                               Text(
                                 "\$${laptop.price}",
                                 style: const TextStyle(
                                     color: Colors.red, fontSize: 16),
                               ),
+                              SizedBox(
+                                width: 10,
+                              ),
                               IconButton(
                                   onPressed: () {
                                     CartCubit.get(context).getAddToCartCubit();
                                   },
-                                  icon: Icon(Icons.add_shopping_cart_sharp))
+                                  icon: Icon(Icons.add_shopping_cart_sharp)),
+                              IconButton(
+                                  onPressed: () {
+                                    FavouriteCubit.get(context).addFavCubit(
+                                        productId: state.laptopList[index].id);
+                                    
+                                  },
+                                  icon: Icon(Icons.favorite))
                             ],
                           ),
                           const SizedBox(height: 8),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:store/feature/get_laptop/view/screen/laptop_screen.dart';
+import 'package:store/feature/cart/cubit/cubit/cart_cubit.dart';
+import 'package:store/feature/category/view/screen/splash_screen.dart';
+import 'package:store/feature/fav/cubit/favourite_cubit.dart';
 import 'package:store/feature/registeration/cubit/cubit/register_cubit.dart';
 
 class MyApp extends StatelessWidget {
@@ -12,15 +14,20 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
-      child: BlocProvider(
-        create: (context) => RegisterCubit(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => RegisterCubit(),
+          ),
+          BlocProvider(
+            create: (context) => CartCubit(),
+          ),
+          BlocProvider(
+            create: (context) => FavouriteCubit(),
+          ),
+        ],
         child: MaterialApp(
-            debugShowCheckedModeBanner: false, home:
-            LaptopScreen()
-            //HomeScreen()
-             //ProfileScreen()
-            //SplashScreen()
-            ),
+            debugShowCheckedModeBanner: false, home: SplashScreen()),
       ),
     );
   }

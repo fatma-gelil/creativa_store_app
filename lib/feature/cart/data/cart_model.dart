@@ -16,14 +16,14 @@ class CartModel {
       required this.price,
       required this.status});
 
-  factory CartModel.fromJson(Map<String,dynamic> jsonData){
+  factory CartModel.fromJson(Map<String, dynamic> jsonData) {
     return CartModel(
-      id: jsonData['_id'], 
-      name: jsonData['name'], 
-      image: jsonData['image'], 
-      totalprice: jsonData['totalPrice'], 
-      quantity: jsonData['quantity'], 
-      price: jsonData['price'], 
-      status: jsonData['status']);
+        id: jsonData['_id'],
+        name: jsonData['name'],
+        image: jsonData['image'],
+        totalprice: jsonData['totalPrice'],
+        quantity: jsonData['quantity'],
+        price: jsonData['price'],
+        status: jsonData['status']);
   }
 }

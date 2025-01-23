@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:store/feature/get_laptop/model/laptop_model.dart';
+import 'package:store/feature/Laptop/model/laptop_model.dart';
 
 class LaptopData {
   static final Dio dio = Dio();
